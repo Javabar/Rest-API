@@ -17,3 +17,15 @@ exports.hashPass = async (req, res, next) => {
         res.send({error})
     }
 }
+
+exports.tokenCheck = async (req, res, next) => {
+    try {
+        const token = req.header("Authorization")
+        console.log(token);
+        const decodedToken = jwt.verify(token, process.env.SECRET)
+        next();
+    } catch (error) {
+        console.log(error);
+        res.send({error});
+    }
+}
