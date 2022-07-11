@@ -33,6 +33,58 @@ if (!req.user) {
 }
 };
 
+exports.findAll = async (req, res) => {
+    try {
+      const users = await User.find(req.body);
+      if (!users) {
+        throw new Error("User not found");
+      } else {
+        res.send({ users });
+      }
+    } catch (error) {
+      console.log(error);
+      res.send({ error });
+    }
+  };
+  
+  exports.findUser = async (req, res) => {
+    try {
+      const users = await User.findOne({ username: req.params.username });
+      if (!users) {
+        throw new Error("Incorrect credentails");
+      } else {
+        res.send({ users });
+      }
+    } catch (error) {
+      console.log(error);
+      res.send({ error });
+    }
+  };
+  
+  exports.updateUser = async (req, res) => {
+    try {
+      const userEdits = await User.updateOne(
+        req.body.filterObj,
+        req.body.updateObj
+      );
+      res.send({ user: userEdits });
+    } catch (error) {
+      console.log(error);
+      res.send({ error });
+    }
+  };
+  
+  exports.deleteUser = async (req, res) => {
+   
+    try {
+      const removeUser = await User.deleteOne({ username: req.params.username });
+      res.send({ user: removeUser });
+    } catch (error) {
+      console.log(error);
+      res.send({ error });
+    }
+  };
+  
 exports.listUser = async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.username})
