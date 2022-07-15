@@ -11,7 +11,7 @@ userRouter.post("/user", hashPass, signUp);
 // defining a post request on /login path, that calls the login controller
 userRouter.post("/login", comparePass, login);
 // defining a post request on a /token path that calls both token and login
-userRouter.get("/token", tokenCheck, login);
+userRouter.get("/user", tokenCheck, login);
 userRouter.get("/user/:username", listUser);
 userRouter.get("/findUser/:username", findUser);
 userRouter.get("/user", findAll);
