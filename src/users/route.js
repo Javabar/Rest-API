@@ -1,7 +1,7 @@
 // import router method only from from express
 const { Router} = require("express");
 // import only signup from controllers file
-const { signUp, login, listUser, findAll, findUser, updateUser,deleteUser} = require("./controller");
+const { signUp, login, listUser, findAll, findUser, updateUser, deleteUser} = require("./controller");
 
 const {hashPass, comparePass, tokenCheck} = require("../middleware");
 // create a router that can have end points added to it 

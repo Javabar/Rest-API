@@ -1,4 +1,6 @@
+// json WEB TOKENS
 const jwt = require("jsonwebtoken");
+// User object model
 const User = require("./model");
 
 exports.signUp = async (req, res) => {
@@ -12,7 +14,7 @@ try {
 } catch (error) {
     console.log(error);
     res.send({error});
-}
+};
 };
 
 exports.login = async (req, res) => {
@@ -21,7 +23,7 @@ exports.login = async (req, res) => {
 //         username: req.body.username,
 //         password: req.body.password,
 // });
-console.log("in login" + req.user);
+// console.log("in login" + req.user);
 if (!req.user) {
     throw new error("incorrect credentials");
 } else {
@@ -44,7 +46,7 @@ exports.findAll = async (req, res) => {
     } catch (error) {
       console.log(error);
       res.send({ error });
-    }
+    };
   };
   
   exports.findUser = async (req, res) => {
@@ -58,7 +60,7 @@ exports.findAll = async (req, res) => {
     } catch (error) {
       console.log(error);
       res.send({ error });
-    }
+    };
   };
   
   exports.updateUser = async (req, res) => {
@@ -75,7 +77,6 @@ exports.findAll = async (req, res) => {
   };
   
   exports.deleteUser = async (req, res) => {
-   
     try {
       const removeUser = await User.deleteOne({ username: req.params.username });
       res.send({ user: removeUser });
